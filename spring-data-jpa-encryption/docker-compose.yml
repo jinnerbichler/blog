@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:10
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: customerdb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  app:
+    build: .
+    restart: on-failure
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: customerdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    depends_on:
+      - db
+
+  pgweb:
+    image: sosedoff/pgweb
+    restart: on-failure
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_URL=postgres://admin:password@db:5432/customerdb?sslmode=disable
+    depends_on:
+      - db
