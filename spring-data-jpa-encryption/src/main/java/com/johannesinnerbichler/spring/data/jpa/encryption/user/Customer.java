@@ -1,9 +1,14 @@
 package com.johannesinnerbichler.spring.data.jpa.encryption.user;
 
 
+import com.johannesinnerbichler.spring.data.jpa.encryption.converters.LocalDateConverter;
+import com.johannesinnerbichler.spring.data.jpa.encryption.converters.LocalDateTimeConverter;
 import com.johannesinnerbichler.spring.data.jpa.encryption.converters.StringConverter;
 
 import javax.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -28,14 +33,13 @@ public class Customer {
     @Convert(converter = StringConverter.class)
     private String email;
 
-//    @Column(name = "birth_date")
-//    @Convert(converter = LocalDateCryptoConverter.class)
-//    private LocalDate birthDate;
-//
-//    @Column(name = "creation_date")
-//    @Convert(converter = LocalDateTimeCryptoConverter.class)
-//    private LocalDateTime creationDate;
+    @Column(name = "birth_date")
+    @Convert(converter = LocalDateConverter.class)
+    private LocalDate birthDate;
 
+    @Column(name = "creation_date")
+    @Convert(converter = LocalDateTimeConverter.class)
+    private LocalDateTime creationDate;
 
     public Long getId() {
         return id;
@@ -67,5 +71,21 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 }

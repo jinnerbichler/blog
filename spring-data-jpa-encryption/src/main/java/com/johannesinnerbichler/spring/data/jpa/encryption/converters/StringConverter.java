@@ -6,12 +6,12 @@ import javax.persistence.Converter;
 public class StringConverter extends AbstractConverter<String> {
 
     @Override
-    String stringToEntityAttribute(String dbData) {
-        return dbData;
+    String stringToEntityAttribute(String data) {
+        return data;
     }
 
     @Override
-    String entityAttributeToString(String attribute) {
-        return attribute;
+    String entityAttributeToString(String attr) {
+        return attr;
     }
 }

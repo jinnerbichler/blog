@@ -40,7 +40,7 @@ final class AesEncryptor implements TextEncryptor {
         private final int keyLength;
 
         PredictableRandomBytesKeyGenerator(int keyLength) {
-            this.random = new Random(1);
+            this.random = new Random(1);  // always use the same seed
             this.keyLength = keyLength;
         }
 

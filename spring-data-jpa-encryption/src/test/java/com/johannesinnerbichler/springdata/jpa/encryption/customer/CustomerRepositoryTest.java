@@ -40,72 +40,57 @@ public class CustomerRepositoryTest {
 
     @Test
     public void save_should_persist_customer_with_auto_incremented_id() {
-        // Given
         Customer firstPersist = customerRepository.save(customer);
         Customer secondCustomer = new Customer();
 
-        // When
         Customer secondPersist = customerRepository.save(secondCustomer);
 
-        // Then
         assertThat(secondPersist.getId()).isEqualTo(firstPersist.getId() + 1);
     }
 
     @Test
     public void save_should_verify_that_encryption_is_enabled_on_first_name_field() {
-        // Given
-        String plainFirstName = "plain first name";
+        String plainFirstName = "Johannes";
         customer.setFirstName(plainFirstName);
         Customer savedCustomerWithEncryptionEnabled = customerRepository.save(customer);
         disableDatabaseEncryption(testEntityManager);
 
-        // When
         Customer customerRetrievedWithoutEncryptionEnabled = testEntityManager.find(Customer.class, savedCustomerWithEncryptionEnabled.getId());
 
-        // Then
         assertThat(customerRetrievedWithoutEncryptionEnabled.getFirstName())
                 .isNotEqualTo(plainFirstName)
-                .isEqualTo("73d51abbd89cb8196f0efb6892f94d685f30486dde0d029c8d9c2813b4adecd6b58588f5590b5c252b15cff36e7c84ab");
+                .isEqualTo("73d51abbd89cb8196f0efb6892f94d684b9bb00e302a79defe4bc621a65f1f0f");
     }
 
     @Test
     public void save_should_verify_that_encryption_is_enabled_on_last_name_field() {
-        // Given
-        String plainLastName = "plain last name";
+        String plainLastName = "Innerbichler";
         customer.setLastName(plainLastName);
         Customer savedCustomerWithEncryptionEnabled = customerRepository.save(customer);
         disableDatabaseEncryption(testEntityManager);
 
-        // When
         Customer customerRetrievedWithoutEncryptionEnabled = testEntityManager.find(Customer.class, savedCustomerWithEncryptionEnabled.getId());
 
-        // Then
         assertThat(customerRetrievedWithoutEncryptionEnabled.getLastName())
                 .isNotEqualTo(plainLastName)
-                .isEqualTo("73d51abbd89cb8196f0efb6892f94d68394e0407650f9089c4e495ccf32448b0");
+                .isEqualTo("73d51abbd89cb8196f0efb6892f94d68b406039fa8488b90b4dce1374348607f");
     }
 
     @Test
     public void save_should_verify_that_encryption_is_enabled_on_email_field() {
-        // Given
-        String plainEmail = "email@example.org";
+        String plainEmail = "j.innerbichler@gmail.com";
         customer.setEmail(plainEmail);
         Customer savedCustomerWithEncryptionEnabled = customerRepository.save(customer);
         disableDatabaseEncryption(testEntityManager);
 
-        // When
         Customer customerRetrievedWithoutEncryptionEnabled = testEntityManager.find(Customer.class, savedCustomerWithEncryptionEnabled.getId());
 
-        // Then
         assertThat(customerRetrievedWithoutEncryptionEnabled.getEmail())
                 .isNotEqualTo(plainEmail)
-                .isEqualTo("73d51abbd89cb8196f0efb6892f94d6810fab12e618bebac38c7d01b5761085811cc22207613813a2ef1ff51b7f33399");
+                .isEqualTo("73d51abbd89cb8196f0efb6892f94d68894ed82ec367a8c562cfd884c93a5578bd96a01b8c0607f80adda09c5805d297");
     }
 
     final static class Helper {
-
-        private Helper() {
-        }
 
         static void enableDatabaseEncryption(TestEntityManager testEntityManager) {
             DatabaseEncryptionPasswordProperty.DATABASE_ENCRYPTION_PASSWORD = "MySuperSecretKey";

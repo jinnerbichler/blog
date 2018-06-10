@@ -1,7 +1,5 @@
 package com.johannesinnerbichler.spring.data.jpa.encryption.converters;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 
 import javax.persistence.AttributeConverter;
@@ -9,8 +7,6 @@ import javax.persistence.AttributeConverter;
 import static com.johannesinnerbichler.spring.data.jpa.encryption.converters.DatabaseEncryptionPasswordProperty.DATABASE_ENCRYPTION_PASSWORD;
 
 abstract class AbstractConverter<T> implements AttributeConverter<T, String> {
-
-    private final Logger logger = LoggerFactory.getLogger(AbstractConverter.class);
 
     @Override
     public String convertToDatabaseColumn(T attribute) {
@@ -36,7 +32,7 @@ abstract class AbstractConverter<T> implements AttributeConverter<T, String> {
         return null;
     }
 
-    abstract T stringToEntityAttribute(String dbData);
+    abstract T stringToEntityAttribute(String data);
 
     abstract String entityAttributeToString(T attribute);
 
