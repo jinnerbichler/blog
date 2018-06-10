@@ -1,4 +1,4 @@
-package com.johannesinnerbichler.spring.data.jpa.encryption.user;
+package com.johannesinnerbichler.spring.data.jpa.encryption.customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package com.johannesinnerbichler.spring.data.jpa.encryption.user;
+package com.johannesinnerbichler.spring.data.jpa.encryption.customer;
 
 
 import com.johannesinnerbichler.spring.data.jpa.encryption.converters.LocalDateConverter;

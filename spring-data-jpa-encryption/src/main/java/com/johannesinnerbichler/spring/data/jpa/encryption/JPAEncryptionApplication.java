@@ -1,7 +1,7 @@
 package com.johannesinnerbichler.spring.data.jpa.encryption;
 
-import com.johannesinnerbichler.spring.data.jpa.encryption.user.Customer;
-import com.johannesinnerbichler.spring.data.jpa.encryption.user.CustomerRepository;
+import com.johannesinnerbichler.spring.data.jpa.encryption.customer.Customer;
+import com.johannesinnerbichler.spring.data.jpa.encryption.customer.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,7 @@ public class JPAEncryptionApplication {
             customerRepository.save(customer2);
             logger.info("Stored customer two");
 
-            // find customers by mail (columns are decrypted after fetched from database)
+            // find customers by mail (columns are decrypted after being fetched from database)
             assert customerRepository.findOneByEmail("j.innerbichler@gmail.com") != null;
             logger.info("Found customer one");
             assert customerRepository.findOneByEmail("jack@black.example") != null;

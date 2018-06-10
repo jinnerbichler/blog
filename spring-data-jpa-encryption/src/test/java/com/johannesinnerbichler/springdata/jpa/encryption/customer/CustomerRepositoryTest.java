@@ -2,8 +2,8 @@ package com.johannesinnerbichler.springdata.jpa.encryption.customer;
 
 import com.johannesinnerbichler.spring.data.jpa.encryption.JPAEncryptionApplication;
 import com.johannesinnerbichler.spring.data.jpa.encryption.converters.DatabaseEncryptionPasswordProperty;
-import com.johannesinnerbichler.spring.data.jpa.encryption.user.Customer;
-import com.johannesinnerbichler.spring.data.jpa.encryption.user.CustomerRepository;
+import com.johannesinnerbichler.spring.data.jpa.encryption.customer.Customer;
+import com.johannesinnerbichler.spring.data.jpa.encryption.customer.CustomerRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
