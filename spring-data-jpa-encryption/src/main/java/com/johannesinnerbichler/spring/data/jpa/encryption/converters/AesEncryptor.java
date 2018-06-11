@@ -19,7 +19,9 @@ final class AesEncryptor implements TextEncryptor {
 
     AesEncryptor() {
         this.encryptor = new BouncyCastleAesCbcBytesEncryptor(
-                DATABASE_ENCRYPTION_PASSWORD, DATABASE_ENCRYPTION_SALT, new PredictableRandomBytesKeyGenerator(16));
+                DATABASE_ENCRYPTION_PASSWORD,
+                DATABASE_ENCRYPTION_SALT,
+                new PredictableRandomBytesKeyGenerator(16));
     }
 
     public String encrypt(String text) {

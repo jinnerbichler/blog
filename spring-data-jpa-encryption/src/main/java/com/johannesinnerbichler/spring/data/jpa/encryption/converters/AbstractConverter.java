@@ -11,25 +11,21 @@ abstract class AbstractConverter<T> implements AttributeConverter<T, String> {
     @Override
     public String convertToDatabaseColumn(T attribute) {
         TextEncryptor encryptor = getEncryptor();
-        if (encryptor != null && attribute != null) {
+        if (encryptor != null && attribute != null)
             return encrypt(encryptor, attribute);
-        }
         return entityAttributeToString(attribute);
     }
 
     @Override
     public T convertToEntityAttribute(String dbData) {
         TextEncryptor encryptor = getEncryptor();
-        if (encryptor != null && dbData != null) {
+        if (encryptor != null && dbData != null)
             return decrypt(encryptor, dbData);
-        }
         return stringToEntityAttribute(dbData);
     }
 
     private TextEncryptor getEncryptor() {
-        if (DATABASE_ENCRYPTION_PASSWORD != null)
-            return new AesEncryptor();
-        return null;
+        return DATABASE_ENCRYPTION_PASSWORD != null ? new AesEncryptor() : null;
     }
 
     abstract T stringToEntityAttribute(String data);
