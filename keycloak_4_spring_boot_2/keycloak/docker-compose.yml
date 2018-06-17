@@ -17,11 +17,12 @@ services:
      environment:
        - KEYCLOAK_USER=admin
        - KEYCLOAK_PASSWORD=password
-       - POSTGRES_USER=admin
-       - POSTGRES_PASSWORD=password
-       - POSTGRES_ADDR=keycloak-db
-       - POSTGRES_PORT=5432
-       - POSTGRES_DATABASE=keycloakdb
+       - DB_VENDOR=postgres
+       - DB_USER=admin
+       - DB_PASSWORD=password
+       - DB_ADDR=keycloak-db
+       - DB_PORT=5432
+       - DB_DATABASE=keycloakdb
      ports:
        - "8081:8080"
      depends_on:
