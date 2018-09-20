@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  pgweb:
+    image: sosedoff/pgweb
+    restart: on-failure
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_URL=postgres://admin:password@db:5432/persons?sslmode=disable
+  db:
+    image: postgres:10
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: persons
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

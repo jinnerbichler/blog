@@ -1,0 +1,26 @@
+version: '3'
+
+
+services:
+
+  pgweb:
+    image: sosedoff/pgweb
+    restart: on-failure
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_URL=postgres://admin:password@db:5432/postgres?sslmode=disable
+    networks:
+      - frontend
+      - db-backend
+  db:
+    image: postgres:10
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    networks:
+      - db-backend
+
+networks:
+  db-backend:
+  frontend:

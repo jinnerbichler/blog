@@ -1,0 +1,23 @@
+version: '2.1'
+
+services:
+  db:
+    image: postgres:10
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  pgweb:
+    image: sosedoff/pgweb
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_URL=postgres://admin:password@db:5432/postgres?sslmode=disable
+    depends_on:
+      db:
+        condition: service_healthy
