@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
   pgweb:
     image: sosedoff/pgweb
     restart: on-failure

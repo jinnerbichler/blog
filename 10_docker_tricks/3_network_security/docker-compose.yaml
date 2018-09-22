@@ -1,7 +1,14 @@
 version: '3'
 
-
 services:
+
+  maildev:
+    image: djfarrelly/maildev:1.0.0-rc2
+    ports:
+      - "8082:80"
+      - "25"
+    networks:
+      - frontend
 
   pgweb:
     image: sosedoff/pgweb
@@ -13,6 +20,7 @@ services:
     networks:
       - frontend
       - db-backend
+
   db:
     image: postgres:10
     environment:
